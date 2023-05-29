@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pokemon</title>
+        <link rel="stylesheet" href="../css/app.css">
+        <script src="../scripts/filtro.js" ></script>
+
+    </head>
+    
+
+    <header>
+        <div class="head">
+            <a class="tst" href="/"><h1>Pokedex</h1></a>
+            <a class="tst" href="/torneios"><h1>Torneios</h1></a>
+            <a class="tst" onclick="logar()"><h1>Login</h1></a>
+        </div>
+    </header>  
+    <!-- <header>
+        <h1>Pokedex</h1> 
+        <a class = 'classebotao' href="/torneios">Torneio</a>
+        <button class = 'classebotao' onclick="logar()">Login</button>
+    </header>    -->
+
+        <dialog id='dialogLogin'>
+            <form id='formlogin' action='/login' method="post">
+                <div class="bonito">
+                <h1>Login</h1>
+                <input type="text" id="nome" name="nome" autocomplete="off" placeholder="Nome">
+                <input type="password" id="senha" name="senha" autocomplete="off" placeholder="senha">
+                <div class="botaoconfirmar">
+                <button class='classebotao' onclick="confirmarDialog(event)">Confirmar</button>
+                </div>
+            </div>
+            </form>
+        </dialog>
+        
+        <div class="filtro">
+
+            <form>
+                <label><input onclick="Filtro('Ordenar')" type="checkbox" name="region" value="ordenar" > ordenar</label><br>
+                
+             <input type="text" id="searchInput" placeholder="Digite o nome do Pokémon..." onkeyup="PesquisaNome()">
+            </form>
+            <form>
+                <!-- <label><input onclick="regiao('todas')" type="checkbox" name="region" value="todas"> Todas regiões</label><br> -->
+                <label><input onclick="regiao('kanto')" type="checkbox" name="region" value="kanto" checked> Kanto</label><br>
+                <label><input onclick="regiao('johto')" type="checkbox" name="region" value="johto"> Johto</label><br>
+                <label><input onclick="regiao('hoenn')" type="checkbox" name="region" value="hoenn"> Hoenn</label><br>
+                <label><input onclick="regiao('sinnoh')" type="checkbox" name="region" value="sinnoh"> Sinnoh</label><br>
+                <label><input onclick="regiao('unova')" type="checkbox" name="region" value="unova"> Unova</label><br>
+                <label><input onclick="regiao('kalos')" type="checkbox" name="region" value="kalos"> Kalos</label><br>
+                <label><input onclick="regiao('alola')" type="checkbox" name="region" value="alola"> Alola</label><br>
+                <label><input onclick="regiao('galar')" type="checkbox" name="region" value="galar"> Galar</label><br>
+                <label><input onclick="regiao('paldea')" type="checkbox" name="region" value="paldea "> Paldea </label><br>
+              </form>
+
+            <!-- <label><input onclick="Filtro('Agrupar')" type="checkbox" name="Agrupar" value="Agrupar"> Combinar tipos</label> -->
+            
+            <form>
+                <label><input onclick="Filtro('Shiny')" type="checkbox" name="Shyne" value="Shyne"> Shiny</label>
+                <label><input onclick="Filtro('Gif')" type="checkbox" name="Gif" value="Gif"> Gif</label>
+            </form>
+            <form onclick="Filtro('Tipos')" id="filter">
+                <label><input type="checkbox" name="pokemonType" value="normal"> Normal</label><br>
+                <label><input type="checkbox" name="pokemonType" value="fire"> Fire</label><br>
+                <label><input type="checkbox" name="pokemonType" value="water"> Water</label><br>
+                <label><input type="checkbox" name="pokemonType" value="grass"> Grass</label><br>
+                <label><input type="checkbox" name="pokemonType" value="electric"> Electric</label><br>
+                <label><input type="checkbox" name="pokemonType" value="ice"> Ice</label><br>
+                <label><input type="checkbox" name="pokemonType" value="fighting"> Fighting</label><br>
+                <label><input type="checkbox" name="pokemonType" value="poison"> Poison</label><br>
+                <label><input type="checkbox" name="pokemonType" value="ground"> Ground</label><br>
+                <label><input type="checkbox" name="pokemonType" value="flying"> Flying</label><br>
+                <label><input type="checkbox" name="pokemonType" value="psychic"> Psychic</label><br>
+                <label><input type="checkbox" name="pokemonType" value="bug"> Bug</label><br>
+                <label><input type="checkbox" name="pokemonType" value="rock"> Rock</label><br>
+                <label><input type="checkbox" name="pokemonType" value="ghost"> Ghost</label><br>
+                <label><input type="checkbox" name="pokemonType" value="dragon"> Dragon</label><br>
+                <label><input type="checkbox" name="pokemonType" value="dark"> Dark</label><br>
+                <label><input type="checkbox" name="pokemonType" value="steel"> Steel</label><br>
+                <label><input type="checkbox" name="pokemonType" value="fairy"> Fairy</label><br>
+            </form>
+        </div>
+          
+
+    <body>
+        <div id="allpokemons" class='geral'>
+
+        </div>
+        <script src="../scripts/load.js" defer ></script>
+        <script src="../app.js" defer ></script>
+       
+    </body>
+
+</html>

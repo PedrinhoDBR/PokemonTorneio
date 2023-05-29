@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    background-color: lightblue;
+    font-family: "Press Start 2P", cursive;
+    font-size: 16px;
+    color: #222222;
+  }
+
+.centralizar{
+    display: grid;
+    justify-content: center;
+}
+
+
+
+/* .equipenome{
+    display: none;
+} */
+.pokemon {
+    background-color: #ec8d8d;
+    width: 240px;
+    height: 240px;
+    margin: 10px;
+    border-radius: 10px;
+    position: relative;
+    border-style: solid;
+    display: flex;
+  }
+
+  .equipe {
+    display: grid;
+    margin: 10px;
+    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+    grid-gap: 10px;
+    flex-direction: column;
+
+}
+
+.pokemon span {
+    font-size: 20px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    justify-content: center;
+  }
+
+  #Imagem {
+    position: absolute;
+    top: 12%;
+    left: 7%;
+    width: 86%;
+    height: 86%;
+    object-fit: contain;
+  }
+
+  .item{
+    display: flex;
+  }
+
+  .estilo {
+    
+    display: inline-block;
+    padding: 1px 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+  }
+
+  #grass {
+
+    background-color: #8bcc50;
+    color: #fff;
+  }
+  
+  #fire {
+
+    background-color: #fd7d24;
+    color: #fff;
+  }
+  
+  #water {
+
+    background-color: #4592c4;
+    color: #fff;
+  }
+
+  #poison {
+
+    background-color: #a950a9;
+    color: #fff;
+  }
+  
+  #normal {
+
+    background-color: #a8a77a;
+    color: #000;
+  }
+  
+  #fighting {
+    background-color: #c22e28;
+    color: #fff;
+  }
+
+  #bug {
+    background-color: #a8b820;
+    color: #fff;
+  }
+  
+  #flying {
+    background-color: #a890f0;
+    color: #fff;
+  }
+  
+  #electric {
+    background-color: #f8d030;
+    color: #000;
+  }
+
+  #fairy {
+    background-color: #ee99ac;
+    color: #000;
+  }
+  
+  #psychic {
+    background-color: #f85888;
+    color: #fff;
+  }
+  
+  #ground {
+    background-color: #e0c068;
+    color: #000;
+  }
+
+  #rock {
+    background-color: #b8a038;
+    color: #fff;
+  }
+  
+  #steel {
+    background-color: #b8b8d0;
+    color: #000;
+  }
+  
+  #ice {
+    background-color: #98d8d8;
+    color: #000;
+  }
+  
+  #ghost {
+    background-color: #705898;
+    color: #fff;
+  }
+
+  #dark {
+    background-color: #705848;
+    color: #fff;
+  }
+  
+  #dragon {
+    background-color: #7038f8;
+    color: #fff;
+  }

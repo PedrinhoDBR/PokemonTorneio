@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/torneio.css">
+    <title>Torneio</title>
+    <script>
+        var ListaPokes = []
+        var invent
+    </script>
+</head>
+<body>
+    <script>
+        Invent = '<%= pokes  %>'
+    </script>
+    <dialog id="meuDialogo">
+        <form id="formsnome">
+            <h2>Nome da sua equipe</h3>
+            <input type="text" id="nome" name="nome" autocomplete="off">
+
+            <div class="botaoconfirmar">
+                <button onclick="fecharDialog()">Fechar</button>
+                <button onclick="confirmarDialog(event)">Confirmar</button>
+            </div>
+        </form>
+    </dialog>
+    <header>
+        <h1>Torneio</h1>
+        <h2 id="texto">Seja bem vindo ao torneio <%= nome.nome %> </h3>
+        <span>Monte sua equipe a baixo</span>
+    </header>
+    <div class="centralizar">
+
+        <span id='equipenome' class='equipenome'>Equipe do <%= username %> </span>
+        <div id="pokemons" class="pokemons">
+            <form id='escolhapokemon' action="/postpokemon" method="post">
+                <input type="text" id="mode" name="mode" autocomplete="off" value='INS' style="display: none;">
+                <input type="text" name ='torneio' id="torneio" autocomplete="off" value='<%= nome.id %>' style="display: none;">
+                <input type="text" name ='nomes' list="nomes" id="combo" autocomplete="off">
+                <div class ='combo'>
+                    <datalist id="nomes">
+                        <% for(let poke of pokemonsload) { %>
+                            <script>
+                                ListaPokes += '<%= poke.nome %>'+'|'
+                            </script>
+                        <option id='<%= poke.nome %>'><%= poke.nome %></option>
+                        <% } %>
+                    </datalist>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="equipe" id='equipe'>
+        
+    </div>
+    <script src="../scripts/torneioEquipe.js" defer ></script>
+    <script src="../scripts/torneio.js" defer ></script>
+</body>
+</html>

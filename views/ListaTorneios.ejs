@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneio</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="../../dbJSON.js"></script>
+    <script src="../scripts/filtro.js" ></script>
+    
+    <link rel="stylesheet" href="../css/ListaTorneio.css">
+
+</head>
+<body>
+    <header>
+        <div class="head">
+            <a class="tst" href="/"><h1>Pokedex</h1></a>
+            <a class="tst" href="/torneios"><h1>Torneios</h1></a>
+        </div>
+    </header>
+    <div>
+        <dialog id="entrarTorneio">
+                <form id="participar" action='/entrartorneio' method="post">
+                <input type="text" id="inputtexto" name="id" autocomplete="off" style="display: none;">
+                <div class="botaoconfirmar">
+                <a class='classebotao'><span>Visualizar</span></a>
+                <button class='classebotao'><span>Participar</span></button>
+                </div>
+                </form>
+
+        </dialog>
+
+        <dialog id="meuDialogo">
+            <form id="formstorneio" action="/torneios" method="post">
+                <h1>Informações do torneio</h1>
+                <h3>Nome do torneio</h3>
+                <input type="text" id="nome" name="nome" autocomplete="off">
+                <h3>Selecione quais regiões estarão liberadas.</h1>
+                    <div class="divregioes">
+                        <label><input type="checkbox" class="region" name="region" value="kanto" > Kanto</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="johto"> Johto</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="hoenn"> Hoenn</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="sinnoh"> Sinnoh</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="unova"> Unova</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="kalos"> Kalos</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="alola"> Alola</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="galar"> Galar</label><br>
+                        <label><input type="checkbox" class="region" name="region" value="paldea "> Paldea </label><br>
+                    </div>
+                <div class="botaoconfirmar">
+                <a class='classebotao' href="/torneios"> Cancelar </a>
+                <button class='classebotao' onclick="confirmarDialog(event)">Confirmar</button>
+                </div>
+            </form>
+        </dialog>
+    </div>
+    <div class="tit">
+        <h1>Lista de torneios</h1>
+        <button class='botao2' onclick="openDialog()">Crie seu torneio</button>
+    
+    </div>
+        <div class="teste">
+            <div class='TorneiosLista' id="TorneiosLista">
+                <% for(let torneio of torneios ) { %>
+                <div class="Torneio">
+                    <a class="redirect" onclick='popup("<%= torneio.id %>")'><%= torneio.nome %></a>
+                    <% for(let regiao of torneio.regioes) { %>
+                    <span><%= regiao %></span>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+    <script src="../scripts/ListaTorneios.js" defer></script>
+</body>
+</html>
+
+
+  

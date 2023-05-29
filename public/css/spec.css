@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    background-color: lightblue;
+    font-family: "Press Start 2P", cursive;
+    font-size: 16px;
+    color: #222222;
+  }
+
+
+
+  .carrosel {
+    width: 100%; /* Largura do carrossel */
+    overflow: hidden;
+    position: relative;
+  }
+
+  
+
+
+.top {
+    display: flex;
+    justify-content: center;
+}
+
+#imagens{
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.pokemon{
+    display: flex;
+    background-color: #ec8d8d;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    position: relative;
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 100px; /* Largura de cada slide */
+    height: 100px; /* Altura de cada slide */
+    margin-right: 10px; /* Espaçamento entre slides */
+}
+
+.pokemon img{
+    width: 50%;
+    height: 50%;
+    
+}
+
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
