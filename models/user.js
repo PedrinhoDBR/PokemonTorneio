@@ -1,4 +1,4 @@
-const database = require('../db')
+const database = require('../DataBase/db')
 const Sequelize = require('sequelize')
 
 const user = database.define('user',{
