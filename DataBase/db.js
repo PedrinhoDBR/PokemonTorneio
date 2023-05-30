@@ -9,5 +9,3 @@ const sequelize = new Sequelize(DatabaseName,DbUser,DsPassword,
 );
 
 module.exports = sequelize
-
-

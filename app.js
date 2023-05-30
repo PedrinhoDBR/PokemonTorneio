@@ -1,5 +1,5 @@
 (async()=>{
-    const database = require('./db')
+    const database = require('./DataBase/db')
     const torneio = require('./models/torneios')
     const pokemons = require('./models/pokemonsCombo')
     const user = require('./models/user')
