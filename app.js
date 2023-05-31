@@ -8,7 +8,7 @@
 
     const pokemon = await pokemons.findAll({
     })
-    if (pokemon == ""){
+    if (pokemon == " "){
         
         fetch('https://pokeapi.co/api/v2/pokemon?limit=1008')
         .then(response => response.json())
@@ -43,7 +43,7 @@
                 }else if(index < 1100){
                     RegiaoTipo = 'paldea'
                 }
-                teste(element.name,RegiaoTipo)
+                PokeADD(element.name,RegiaoTipo)
           });
         })
         .catch(error => {
@@ -57,6 +57,9 @@ const torneio = require('./models/torneios')
 const pokemons = require('./models/pokemonsCombo')
 const userlogin = require('./models/user')
 const inventario = require('./models/inventario')
+
+const {POSTEntrarTorneio} = require('./models/POSTEntrarorneio')
+
 // const { spawn } = require('child_process');
 const express = require('express');
 const session = require('express-session');
@@ -66,7 +69,7 @@ const { type } = require('os');
 const torneiojs = require('./public/Scripts/torneio');
 // const { json } = require('express/lib/response');
 
-async function teste(nome,tipo){
+async function PokeADD(nome,tipo){
     await pokemons.create({
         nome: nome,
         regiao: tipo
@@ -151,38 +154,14 @@ app.get('/Visualizartorneio/:torneioId',async(req,res)=>{ //modo de visualizar
 
 })
 
+
 app.post('/entrartorneio',async(req,res)=>{ //update do nome do user no torneio
+    const id = req.body
     const sess = checkuser(req)
     if(sess){
-        const id = req.body 
         const torneioescolhido = await torneio.findByPk(id.id)
-        const nome = req.session.ContaUsuario.nome
-        if (torneioescolhido.jogador1 == nome || torneioescolhido.jogador2 == nome){
-            res.redirect('/torneio/'+id.id)
-        }else if (torneioescolhido.jogador1 == null){
-            torneioescolhido.set({
-                jogador1: nome
-            })
-            await inventario.create({
-                IdTorneio: torneioescolhido.id,
-                IdUser: sess.id
-            })
-            await torneioescolhido.save();
-            res.redirect('/torneio/'+id.id)
-        }else if (torneioescolhido.jogador2 == null){
-            torneioescolhido.set({
-                jogador2: nome
-            })
-            await inventario.create({
-                IdTorneio: torneioescolhido.id,
-                IdUser: sess.id
-            })
-            await torneioescolhido.save();
-            res.redirect('/torneio/'+id.id)
-        }else{
-            console.log("Torneio cheio")
-            res.redirect('back');
-        }
+        POSTEntrarTorneio(id,sess,torneioescolhido,res)
+
     }else{
         res.render('/')
     }
