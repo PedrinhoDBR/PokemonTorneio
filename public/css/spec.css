@@ -1,34 +1,46 @@
-body {
+/* body {
     margin: 0;
     background-color: lightblue;
     font-family: "Press Start 2P", cursive;
     font-size: 16px;
     color: #222222;
-  }
+  } */
 
 
 
-  .carrosel {
-    width: 100%; /* Largura do carrossel */
+  /* .carrosel {
+    width: 100%;
     overflow: hidden;
     position: relative;
-  }
+  } */
 
+  .slider {
+    display: grid;
+    margin: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 10px;
+    flex-direction: column;
+}
   
 
-
 .top {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
 }
 
 #imagens{
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     transition: transform 0.3s ease-in-out;
 }
 
 .pokemon{
+    width: 240px;
+    height: 240px;
+    margin: 10px;
+    border-radius: 10px;
+    position: relative;
+    border-style: solid;
     display: flex;
     background-color: #ec8d8d;
     width: 300px;
@@ -39,14 +51,19 @@ body {
     border-style: solid;
     justify-content: center;
     align-items: center;
-    flex: 0 0 100px; /* Largura de cada slide */
-    height: 100px; /* Altura de cada slide */
-    margin-right: 10px; /* Espaçamento entre slides */
+    /* flex: 0 0 100px; */
+    /* height: 100px; */
+    margin-right: 10px; 
+
+}
+
+.pokemon span{
+  bottom: 0;
 }
 
 .pokemon img{
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
     
 }
 

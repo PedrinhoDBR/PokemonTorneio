@@ -58,7 +58,7 @@ const pokemons = require('./models/pokemonsCombo')
 const userlogin = require('./models/user')
 const inventario = require('./models/inventario')
 
-const {POSTEntrarTorneio} = require('./models/POSTEntrarorneio')
+
 
 // const { spawn } = require('child_process');
 const express = require('express');
@@ -66,7 +66,9 @@ const session = require('express-session');
 const methodOverride = require('method-override')
 const { resolve } = require('path');
 const { type } = require('os');
-const torneiojs = require('./public/Scripts/torneio');
+const {POSTEntrarTorneio} = require('./controller/POSTEntrarorneio');
+const { POSTTorneios } = require('./controller/POSTTorneios');
+const { POSTPokemon } = require('./controller/POSTPokemon');
 // const { json } = require('express/lib/response');
 
 async function PokeADD(nome,tipo){
@@ -111,7 +113,7 @@ app.post('/login',async(req,res)=>{
     if(user){
         if (user.senha == senha){
             req.session.ContaUsuario = user
-            res.redirect('back');
+            res.redirect('/');
         }
     }else{
         const newuser = await userlogin.create({
@@ -119,17 +121,25 @@ app.post('/login',async(req,res)=>{
             senha: senha
         })
         req.session.ContaUsuario = newuser
-        res.redirect('back');
+        res.redirect('/');
     }
     }else{
         console.log("ja logado")
-        res.redirect('back');
+        res.redirect('/');
     }
-    // console.log(req.session.ContaUsuario)
+
 })
 
 app.get('/',async(req,res)=>{
-    res.render('index');
+    const sess = checkuser(req)
+    if (sess){
+        const nome = sess.nome
+        res.render('index',{nome});
+
+    }else{
+        const nome = '' 
+        res.render('index',{nome});
+    }
 })
 
 app.get('/torneios', async(req,res)=>{
@@ -156,12 +166,9 @@ app.get('/Visualizartorneio/:torneioId',async(req,res)=>{ //modo de visualizar
 
 
 app.post('/entrartorneio',async(req,res)=>{ //update do nome do user no torneio
-    const id = req.body
     const sess = checkuser(req)
     if(sess){
-        const torneioescolhido = await torneio.findByPk(id.id)
-        POSTEntrarTorneio(id,sess,torneioescolhido,res)
-
+        POSTEntrarTorneio(req,res,sess)
     }else{
         res.render('/')
     }
@@ -169,73 +176,40 @@ app.post('/entrartorneio',async(req,res)=>{ //update do nome do user no torneio
 })
 
 app.get('/torneio/:torneioId',async(req,res)=>{  //modo de jogador
-    let torneioId = req.params.torneioId
     const sess = checkuser(req)
-    const inventarioPoke = await inventario.findOne({where: { [Op.and]: [{ IdTorneio:torneioId},{ IdUser:sess.id}]}})
-    const torneioescolhido = await torneio.findByPk(torneioId)
-    const a = torneioescolhido.regioes
-    const pokemonsload = await pokemons.findAll({
-        where: {[Op.or]: [{regiao: {[Op.in]: a}}]}
-    })
-    const nome = torneioescolhido   
-    var username = sess.nome
-    var pokes = JSON.parse(inventarioPoke.pokemons)
-    res.render('torneio',{pokemonsload,nome,username,pokes});
+    if (sess){  
+        let torneioId = req.params.torneioId
+        const sess = checkuser(req)
+        const inventarioPoke = await inventario.findOne({where: { [Op.and]: [{ IdTorneio:torneioId},{ IdUser:sess.id}]}})
+        const torneioescolhido = await torneio.findByPk(torneioId)
+        const a = torneioescolhido.regioes
+        const pokemonsload = await pokemons.findAll({
+            where: {[Op.or]: [{regiao: {[Op.in]: a}}]}
+        })
+        const nome = torneioescolhido   
+        var username = sess.nome
+        var pokes = JSON.parse(inventarioPoke.pokemons)
+        res.render('torneio',{pokemonsload,nome,username,pokes});
+    }else{
+        res.render('/')
+    }
+
 });
 
 var i = 0
 app.post('/torneios',async(req,res)=>{
-    const {nome,region} = req.body
-
-    const torn = await torneio.findOne({where: {
-        nome:nome
-        }
-    })
-    if (!torn){
-        if (typeof(region)== 'string' ){
-            const arr = [region]
-            await torneio.create({
-                nome: nome,
-                regioes: arr
-            })
-        }else{
-            await torneio.create({
-                nome: nome,
-                regioes: region
-            })
-        }
+    const sess = checkuser(req)
+    if(sess){
+        POSTTorneios(req,res)
     }else{
-        console.log("torneio ja existente")
+        res.render('/')
     }
-    res.redirect('back');
-
 })
 
 app.post('/postpokemon',async(req,res)=>{
-    const {mode,torneio,nomes} = req.body
     const sess = checkuser(req)
-    if (sess){
-        if (mode == 'INS'){
-            const inventarioPoke = await inventario.findOne({where: { [Op.and]: [{ IdTorneio:torneio},{ IdUser:sess.id}]}})
-            if (inventarioPoke.pokemons == null ||inventarioPoke.pokemons == ""){
-                const arr = [nomes]
-                const js =  JSON.stringify(arr)
-                inventarioPoke.set({
-                    pokemons: js
-                })
-                await inventarioPoke.save()
-            }else{
-                const arr = JSON.parse(inventarioPoke.pokemons)
-                arr.push(nomes)
-                const js =  JSON.stringify(arr)
-                inventarioPoke.set({
-                    pokemons: js
-                })
-                await inventarioPoke.save()
-
-            }
-            res.redirect('back');
-        }   
+    if (sess){  
+        POSTPokemon(req,res,sess)
     }else{
         res.redirect('/')
     }
@@ -246,7 +220,13 @@ app.listen(3000,function(){
     console.log('Ok');
 })
 
+
+
 function checkuser(req){
     const logado = req.session.ContaUsuario
     return logado;
 }
+
+app.get('/login', async(req,res)=>{
+    res.render('login')
+})

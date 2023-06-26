@@ -1,14 +1,40 @@
+@font-face {
+  font-family: 'Love Honey';
+  src: url(fonts/Lasting\ Sketch.ttf) format('opentype');
+  /* Você pode adicionar outras variações da fonte aqui, como bold, italic, etc. */
+}
+
+
 body {
-    margin: 0;
-    background-color: lightblue;
+    margin: 0; 
+    background-color: rgb(103, 52, 133);
     font-family: "Press Start 2P", cursive;
     font-size: 16px;
-    color: #222222;
+    color: black;
+    background-image: url(../img/background/0e66a6b7de72bdd1650b02d70f85ed85.jpg);
+    background-repeat: no-repeat;
+    background-size: 3000px;
+    background-attachment: fixed;
+    backdrop-filter: blur(10px);
+    font-family: 'Love Honey';
+    /* filter: blur(5px); */
+    /* color: white; */
+    margin: 0px;
+  }
+  
+  .logo{
+    height: 10%;
+    width: 10%;
+    cursor: pointer;
   }
 
+  dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
 
   .tst:hover {
     color: rgb(0, 119, 255);
+    cursor: pointer;
   }
 
 
@@ -49,9 +75,6 @@ body {
   background-color: #45a049;
 }
 
-/* header {
-  background-color: rgba(130, 188, 226, 0.384);
-} */
 
 #combo {
   margin-left: 30%;
@@ -121,11 +144,6 @@ background-color: #bfd8d2;
   background-color: #d987b7;
 }
 
-
-/* .kanto .pokemon{
-  background-color: #ec8d8d;
-} */
-
 .pokemon {
     /* background-color: #ec8d8d; */
     width: 240px;
@@ -150,8 +168,8 @@ background-color: #bfd8d2;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    /* border-top: 1px solid #ddd; */
+    /* border-bottom: 1px solid #ddd; */
     padding: 10px;
   }
 
@@ -159,7 +177,7 @@ background-color: #bfd8d2;
     display: inline-block;
     margin: 5px;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffffff;
     border-radius: 5px;
   }
 
@@ -327,3 +345,25 @@ background-color: #bfd8d2;
     background-color: #7038f8;
     color: #fff;
   }
+
+  /* _______Filtro_____ */
+
+  .Mostrar{
+    display: grid;
+  }
+  .Remover{
+    display: none;
+  }
+
+  /* _______LOGIN________ */
+
+  /* #formlogin{
+    background-image: url(../img/background/47\ Sem\ Título_20230531122542.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+  }
+
+  .bonito {
+    color: white;
+  } */

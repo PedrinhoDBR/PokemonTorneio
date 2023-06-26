@@ -1,0 +1,95 @@
+@media only screen and (min-width: 390px){
+    body{
+        background-image: linear-gradient(#0b0c19, #2a2486);
+        /* background-size: 100%; */
+        background-repeat: no-repeat;
+        /* border: solid 1px white; */
+        /* padding: 100px; */
+        /* width: 100%; */
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+       }
+       html {
+           width: 100%;
+           height: 100%;
+           /* padding: 100px; */
+       }
+       
+       #formlogin{
+        width: 99%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+       
+       .bonito {
+           width: 80%;
+           height: 20%;
+           color: white;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           flex-direction: column;
+           border: solid 50px;
+           border-image-source: url(../img/borda.png);
+           border-image-slice: 230;
+           /* padding-left: 10%;
+           padding-right: 10%; */
+           padding-top: 80%;
+           padding-bottom: 80%;
+       }
+       
+       .titulo {
+           position: absolute;
+           top: 200px
+       }
+       
+       .dados {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           flex-direction: column;
+           position: absolute;
+           top: 550px
+       }
+       
+       #nome {
+           text-align: center;
+           background-color: #0b0c1900;
+           border: none;
+           padding-bottom: 5px;
+           border-bottom: solid 2px white;
+           margin: 10px;
+           color: white;
+       }
+       
+       #senha {
+           text-align: center;
+           background-color: #0b0c1900;
+           border: none;
+           padding-bottom: 5px;
+           border-bottom: solid 2px white;
+           margin: 10px;
+           color: white;
+       }
+       
+       .classebotao {
+           color: white;
+           /* width: 100%; */
+           background-color: #463CD1;
+           padding: 10px;
+           padding-left: 60px;
+           padding-right: 60px;
+           border: none;
+           margin-top: 100px;
+           /* position: absolute;
+           top: 100px;
+           left: 25%;
+           right: 25%; */
+           border-radius: 50px;
+       }
+}

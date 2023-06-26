@@ -1,7 +1,10 @@
 const inventario = require('../models/inventario')
+const torneio = require('../models/torneios')
 
 const POSTEntrarTorneio = {
-  async POSTEntrarTorneio (id,sess,torneioescolhido,res){
+  async POSTEntrarTorneio (req,res,sess){
+    const id = req.body
+    const torneioescolhido = await torneio.findByPk(id.id)
     const nome = sess.nome
     if (torneioescolhido.jogador1 == nome || torneioescolhido.jogador2 == nome){
         res.redirect('/torneio/'+id.id)

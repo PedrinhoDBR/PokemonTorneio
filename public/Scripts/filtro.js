@@ -26,8 +26,29 @@ function Filtro(tipo){
     }
 }
 
+function Mostrarfiltro(){
+    console.log("mostrar")
+    if(document.getElementById("MenuFiltro").classList.contains('Remover')){
+        document.getElementById("MenuFiltro").classList.add('Mostrar');
+        document.getElementById("MenuFiltro").classList.remove('Remover');
+    }else{
+        document.getElementById("MenuFiltro").classList.add('Remover');
+        document.getElementById("MenuFiltro").classList.remove('Mostrar');
+
+    }
+}
+
 function Redirecionar(tela){
-    window.location.href = tela+'.html' ;
+    window.location.href = tela ;
+}
+
+function torneio(parm){
+    console.log(parm)
+    if (parm != ''){
+        window.location.href = '/torneios'
+    }else{
+        logar()
+    }
 }
 
 function logar(){

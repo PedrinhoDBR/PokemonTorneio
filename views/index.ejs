@@ -7,15 +7,20 @@
         <title>Pokemon</title>
         <link rel="stylesheet" href="../css/app.css">
         <script src="../scripts/filtro.js" ></script>
-
+        <script src="https://kit.fontawesome.com/d30c161d52.js" crossorigin="anonymous"></script>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     </head>
     
 
     <header>
+        
         <div class="head">
-            <a class="tst" href="/"><h1>Pokedex</h1></a>
-            <a class="tst" href="/torneios"><h1>Torneios</h1></a>
-            <a class="tst" onclick="logar()"><h1>Login</h1></a>
+            <img src="../img/Pokémon-Logo-PNG.png" onclick="Redirecionar('/')" class="logo">
+            <!-- <a class="tst" href="/"><h1>Pokedex</h1></a> -->
+            
+            <a class="tst" onclick="torneio('<%= nome %>')"><h1>Torneios</h1></a>
+            <!-- <a class="tst" href="/login"><h1>Login</h1></a> -->
+            <!-- <a class="tst" onclick="logar()"><h1>Login</h1></a> -->
         </div>
     </header>  
     <!-- <header>
@@ -36,15 +41,21 @@
             </div>
             </form>
         </dialog>
-        
         <div class="filtro">
+            <!-- <i onclick="Mostrarfiltro()" class="fa fa-solid fa-bars fa-2x"></i> -->
+            <i onclick="Mostrarfiltro()" class="fa-sharp fa-solid fa-filter fa-2x"></i>
+            <!-- <i class="fa-solid fa-folder"></i> -->
+            <form>    
+                <!-- <i class="fa-solid fa-bars"></i> -->
+                <input type="text" id="searchInput" placeholder="Digite o nome do Pokémon..." onkeyup="PesquisaNome()" autocomplete="off">
+            </form>     
+        </div>   
+        <div class="filtro Remover" id='MenuFiltro'>
 
-            <form>
-                <label><input onclick="Filtro('Ordenar')" type="checkbox" name="region" value="ordenar" > ordenar</label><br>
+            <div >
                 
-             <input type="text" id="searchInput" placeholder="Digite o nome do Pokémon..." onkeyup="PesquisaNome()">
-            </form>
             <form>
+            
                 <!-- <label><input onclick="regiao('todas')" type="checkbox" name="region" value="todas"> Todas regiões</label><br> -->
                 <label><input onclick="regiao('kanto')" type="checkbox" name="region" value="kanto" checked> Kanto</label><br>
                 <label><input onclick="regiao('johto')" type="checkbox" name="region" value="johto"> Johto</label><br>
@@ -55,14 +66,18 @@
                 <label><input onclick="regiao('alola')" type="checkbox" name="region" value="alola"> Alola</label><br>
                 <label><input onclick="regiao('galar')" type="checkbox" name="region" value="galar"> Galar</label><br>
                 <label><input onclick="regiao('paldea')" type="checkbox" name="region" value="paldea "> Paldea </label><br>
+                <label><input onclick="Filtro('Ordenar')" type="checkbox" name="region" value="ordenar" > Ordenar</label><br>
+                <label><input onclick="Filtro('Shiny')" type="checkbox" name="Shyne" value="Shyne"> Shiny</label>
+                <label><input onclick="Filtro('Gif')" type="checkbox" name="Gif" value="Gif"> Gif</label>
               </form>
 
             <!-- <label><input onclick="Filtro('Agrupar')" type="checkbox" name="Agrupar" value="Agrupar"> Combinar tipos</label> -->
             
-            <form>
+            <!-- <form>
+                <label><input onclick="Filtro('Ordenar')" type="checkbox" name="region" value="ordenar" > Ordenar</label><br>
                 <label><input onclick="Filtro('Shiny')" type="checkbox" name="Shyne" value="Shyne"> Shiny</label>
                 <label><input onclick="Filtro('Gif')" type="checkbox" name="Gif" value="Gif"> Gif</label>
-            </form>
+            </form> -->
             <form onclick="Filtro('Tipos')" id="filter">
                 <label><input type="checkbox" name="pokemonType" value="normal"> Normal</label><br>
                 <label><input type="checkbox" name="pokemonType" value="fire"> Fire</label><br>
@@ -83,6 +98,7 @@
                 <label><input type="checkbox" name="pokemonType" value="steel"> Steel</label><br>
                 <label><input type="checkbox" name="pokemonType" value="fairy"> Fairy</label><br>
             </form>
+            </div>
         </div>
           
 
